@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.sem.authority.mapper.UserMapper">
+
+  <resultMap id="queryUser" type="com.zj.sem.authority.model.User">
+    <id property="id" column="o_id"/>
+    <result property="name" column="o_name"/>
+    <result property="password" column="o_password"/>
+    <result property="email" column="o_email"/>
+    <result property="valid" column="o_valid"/>
+    <result property="createdBy" column="o_created_by"/>
+    <result property="createdTime" column="o_created_time"/>
+    <result property="updatedBy" column="o_updated_by"/>
+    <result property="updatedTime" column="o_updated_time"/>
+  </resultMap>
+  
+
+  <select id="getUser" resultMap="queryUser">
+    select *
+    from t_auth_user
+    where o_id = #{id}
+  </select>
+
+  <select id="listAllUser" resultMap="queryUser">
+    select *
+    from t_auth_user
+  </select>
+
+  <insert id="saveUser">
+    INSERT INTO t_auth_user (o_id, o_name, o_password, 
+                             o_email, o_valid, o_created_by, 
+                             o_created_time, o_updated_by, o_updated_time)
+    VALUES (#{id}, #{name}, #{password}, #{email}, #{valid}, #{createdBy}, 
+            #{createdTime}, #{updatedBy},#{updatedTime});
+
+  </insert>
+
+  <update id="updateUser">
+    
+  </update>
+</mapper>
